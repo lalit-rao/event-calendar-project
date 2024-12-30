@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { ViewMode } from '@/types/calendar';
+import { Button } from './ui/button.tsx';
+import { ViewMode } from '../types/calendar';
 
 interface ViewModeToggleProps {
   value: ViewMode;

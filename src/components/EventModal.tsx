@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { formatDate, hasEventOverlap } from '../lib/calendar-utils';
 import { useReminders } from '../hooks/useReminders';
 import RecurrenceForm from '../components/RecurrenceForm';
-import type { Event, RecurrencePattern } from '../types/calendar';
+import type { Event } from '../types/calendar';
 
 const eventSchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -46,7 +46,7 @@ export default function EventModal({ calendar }: { calendar: any }) {
     if (selectedEvent) {
       form.reset({
         ...selectedEvent,
-        reminders: selectedEvent.reminders?.map(r => r.minutes) || [],
+        reminders: selectedEvent.reminders?.map((r: { minutes: any; }) => r.minutes) || [],
       });
     } else {
       form.reset({
@@ -115,7 +115,7 @@ export default function EventModal({ calendar }: { calendar: any }) {
     <Dialog
       open={isEventModalOpen}
       onOpenChange={(open) =>
-        setState(prev => ({ ...prev, isEventModalOpen: open }))
+        setState((prev: any) => ({ ...prev, isEventModalOpen: open }))
       }
     >
       <DialogContent className="sm:max-w-[425px]">

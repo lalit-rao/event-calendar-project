@@ -1,3 +1,5 @@
+import {DayEvents, Event} from "../types/calendar.ts";
+
 export const DAYS_IN_WEEK = 7;
 export const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -59,7 +61,7 @@ export function hasEventOverlap(
 
   return existingEvents.some(event => {
     if (event.id === excludeEventId) return false;
-    
+
     const eventStart = new Date(`1970-01-01T${event.startTime}`).getTime();
     const eventEnd = new Date(`1970-01-01T${event.endTime}`).getTime();
 
@@ -70,9 +72,9 @@ export function hasEventOverlap(
 export function exportEventsToJson(events: DayEvents): void {
   const dataStr = JSON.stringify(events, null, 2);
   const dataUri = `data:application/json;charset=utf-8,${encodeURIComponent(dataStr)}`;
-  
+
   const exportName = `calendar-events-${new Date().toISOString().split('T')[0]}.json`;
-  
+
   const linkElement = document.createElement('a');
   linkElement.setAttribute('href', dataUri);
   linkElement.setAttribute('download', exportName);

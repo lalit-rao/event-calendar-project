@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Event, DayEvents, CalendarState } from '../types/calendar';
 import { useLocalStorage } from './useLocalStorage.ts';
 

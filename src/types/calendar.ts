@@ -28,6 +28,7 @@ export interface Event {
   seriesId?: string; // For recurring events
 }
 
+
 export type ViewMode = 'month' | 'week' | 'day';
 
 export interface DayEvents {
