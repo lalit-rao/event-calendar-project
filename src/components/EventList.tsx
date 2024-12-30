@@ -28,7 +28,7 @@ type Calendar = {
   getFilteredEvents: (dateStr: string) => Event[];
 };
 
-export default function EventList({ calendar }: { calendar: Calendar }) {
+export default function EventList({ calendar }: { calendar: any }) {
   const { state, setState } = calendar;
   const { selectedDate, events, isEventListOpen, filterKeyword } = state;
 

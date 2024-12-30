@@ -6,7 +6,7 @@ import { MONTHS, WEEKDAYS, getMonthDays, isToday, isSameMonth, formatDate } from
 import { useCalendar } from '../hooks/useCalendar';
 import { ThemeToggle } from './ThemeToggle';
 import EventModal from './EventModal';
-import EventList from './EventList';
+import EventList from "./EventList.tsx";
 
 export default function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
