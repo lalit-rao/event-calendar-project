@@ -28,15 +28,15 @@ type Calendar = {
   getFilteredEvents: (dateStr: string) => Event[];
 };
 
-export default function EventList({ calendar }: { calendar: any }) {
-  const { state, setState } = calendar;
+export default function EventList({ Calendar }: { Calendar : any }) {
+  const { state, setState } = Calendar;
   const { selectedDate, events, isEventListOpen, filterKeyword } = state;
 
   const dateStr = formatDate(selectedDate);
-  const dateEvents = calendar.getFilteredEvents(dateStr);
+  const dateEvents = Calendar.getFilteredEvents(dateStr);
 
   const handleEventClick = (event: Event) => {
-    setState(prev => ({
+    setState((prev: any) => ({
       ...prev,
       selectedEvent: event,
       isEventModalOpen: true,
@@ -44,7 +44,7 @@ export default function EventList({ calendar }: { calendar: any }) {
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(prev => ({
+    setState((prev: any) => ({
       ...prev,
       filterKeyword: e.target.value,
     }));
@@ -54,7 +54,7 @@ export default function EventList({ calendar }: { calendar: any }) {
     <Sheet
       open={isEventListOpen}
       onOpenChange={(open) =>
-        setState(prev => ({ ...prev, isEventListOpen: open }))
+        setState((prev: any) => ({ ...prev, isEventListOpen: open }))
       }
     >
       <SheetContent>
@@ -91,7 +91,7 @@ export default function EventList({ calendar }: { calendar: any }) {
               </p>
             ) : (
               <div className="space-y-2">
-                {dateEvents.map(event => (
+                {dateEvents.map((event: { [x: string]: any; id: any; title: any; startTime: any; endTime: any; description: any; }) => (
                   <div
                     key={event.id}
                     className="p-3 border rounded-lg cursor-pointer hover:bg-accent"
