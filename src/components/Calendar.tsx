@@ -6,7 +6,8 @@ import { MONTHS, WEEKDAYS, getMonthDays, isToday, isSameMonth, formatDate } from
 import { useCalendar } from '../hooks/useCalendar';
 import { ThemeToggle } from './ThemeToggle';
 import EventModal from './EventModal';
-import EventList from "./EventList.tsx";
+// import EventList from "./EventList.tsx";
+
 
 export default function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -152,7 +153,7 @@ export default function Calendar() {
       </div>
 
       <EventModal calendar={calendar} />
-      <EventList calendar={calendar} />
+      {/*<EventList  calendar={calendar}/>*/}
     </div>
   );
 }

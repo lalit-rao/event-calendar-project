@@ -4,6 +4,7 @@ import { Button } from './ui/button.tsx';
 import { ScrollArea } from './ui/scroll-area.tsx';
 import { formatDate, exportEventsToJson } from '../lib/calendar-utils';
 import { Download, Search } from 'lucide-react';
+import {DayEvents} from "../types/calendar.ts";
 
 type Event = {
   id: string | number;
@@ -16,7 +17,8 @@ type Event = {
 
 type CalendarState = {
   selectedDate: Date;
-  events: Event[];
+  events: DayEvents;
+
   isEventListOpen: boolean;
   filterKeyword: string;
   [key: string]: any;
@@ -28,15 +30,15 @@ type Calendar = {
   getFilteredEvents: (dateStr: string) => Event[];
 };
 
-export default function EventList({ Calendar }: { Calendar : any }) {
-  const { state, setState } = Calendar;
+export default function EventList({ calendar }: { calendar: Calendar }) {
+  const { state, setState } = calendar;
   const { selectedDate, events, isEventListOpen, filterKeyword } = state;
 
   const dateStr = formatDate(selectedDate);
-  const dateEvents = Calendar.getFilteredEvents(dateStr);
+  const dateEvents = calendar.getFilteredEvents(dateStr);
 
   const handleEventClick = (event: Event) => {
-    setState((prev: any) => ({
+    setState(prev => ({
       ...prev,
       selectedEvent: event,
       isEventModalOpen: true,
@@ -44,7 +46,7 @@ export default function EventList({ Calendar }: { Calendar : any }) {
   };
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState((prev: any) => ({
+    setState(prev => ({
       ...prev,
       filterKeyword: e.target.value,
     }));
@@ -54,7 +56,7 @@ export default function EventList({ Calendar }: { Calendar : any }) {
     <Sheet
       open={isEventListOpen}
       onOpenChange={(open) =>
-        setState((prev: any) => ({ ...prev, isEventListOpen: open }))
+        setState(prev => ({ ...prev, isEventListOpen: open }))
       }
     >
       <SheetContent>
@@ -91,7 +93,7 @@ export default function EventList({ Calendar }: { Calendar : any }) {
               </p>
             ) : (
               <div className="space-y-2">
-                {dateEvents.map((event: { [x: string]: any; id: any; title: any; startTime: any; endTime: any; description: any; }) => (
+                {dateEvents.map(event => (
                   <div
                     key={event.id}
                     className="p-3 border rounded-lg cursor-pointer hover:bg-accent"

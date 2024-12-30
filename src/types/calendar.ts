@@ -36,9 +36,9 @@ export interface DayEvents {
 }
 
 export interface CalendarState {
-  events: Event[];
+  // events: Event[];
   selectedDate: Date;
-  // events: DayEvents;
+  events: DayEvents;
   selectedEvent: Event | null;
   isEventModalOpen: boolean;
   isEventListOpen: boolean;
